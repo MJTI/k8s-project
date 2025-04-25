@@ -18,4 +18,7 @@ spec:
       - image: memcached
         imagePullPolicy: Always
         name: memcached
-        resources: {}
+        resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"

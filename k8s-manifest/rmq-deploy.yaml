@@ -17,7 +17,10 @@ spec:
       containers:
       - image: rabbitmq
         name: rabbitmq
-        resources: {}
+        resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
         env:
           - name: RABBITMQ_DEFAULT_USER
             valueFrom:

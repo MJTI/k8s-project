@@ -18,7 +18,10 @@ spec:
       - image: 138913568231.dkr.ecr.us-east-1.amazonaws.com/stage/mjti-app:32
         imagePullPolicy: Always
         name: mjti-app
-        resources: {}
+        resources:
+          requests:
+            memory: "384Mi"
+            cpu: "200m"
         ports:
         - name: app-port
           containerPort: 8080
