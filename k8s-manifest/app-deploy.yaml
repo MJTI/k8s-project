@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: 138913568231.dkr.ecr.us-east-1.amazonaws.com/stage/mjti-app:32
+        imagePullPolicy: Always
+        name: mjti-app
+        resources: {}
+        ports:
+        - name: app-port
+          containerPort: 8080
+      imagePullSecrets:
+      - name: ecrcreds

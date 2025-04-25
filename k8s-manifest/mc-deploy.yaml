@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mc
+  name: mc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mc
+  template:
+    metadata:
+      labels:
+        app: mc
+    spec:
+      containers:
+      - image: memcached
+        imagePullPolicy: Always
+        name: memcached
+        resources: {}

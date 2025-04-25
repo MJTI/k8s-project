@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - image: mjth/vprodb:1.4
+          name: mysql
+          resources: {}
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: dbcreds
+                key: pass
+          - name: MYSQL_DATABASE
+            value: "accounts"
+          volumeMounts:
+          - name: db-volume
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: db-volume
+          persistentVolumeClaim:
+            claimName: db-claim

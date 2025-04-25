@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rmq
+  name: rmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmq
+  template:
+    metadata:
+      labels:
+        app: rmq
+    spec:
+      containers:
+      - image: rabbitmq
+        name: rabbitmq
+        resources: {}
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            valueFrom:
+              secretKeyRef:
+                name: rmqcreds
+                key: user
+          - name: RABBITMQ_DEFAULT_PASS
+            valueFrom:
+              secretKeyRef:
+                name: rmqcreds
+                key: pass
