@@ -3,11 +3,12 @@ kind: Service
 metadata:
   labels:
     app: db
-  name: db01
+  name: db-headless
 spec:
   ports:
   - port: 3306
     protocol: TCP
     targetPort: 3306
+  clusterIP: None
   selector:
     app: db
