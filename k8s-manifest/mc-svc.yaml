@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: mc
+    role: mc
   name: mc01
 spec:
   ports:
@@ -10,4 +10,4 @@ spec:
     protocol: TCP
     targetPort: 11211
   selector:
-    app: mc
+    name: mc

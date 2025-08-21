@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: app
+    name: app
   name: app
 spec:
   selector:
     matchLabels:
-      app: app
+      name: app
   template:
     metadata:
       labels:
-        app: app
+        name: app
     spec:
       containers:
       - image: 138913568231.dkr.ecr.us-east-1.amazonaws.com/stage/mjti-app:32
