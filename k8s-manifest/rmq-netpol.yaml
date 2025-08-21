@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: rmq-policy
+spec:
+  podSelector:
+    matchLabels:
+      name: rmq
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: app
+    ports:
+    - port: 5672
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          name: app
+    ports:
+    - port: 8080
